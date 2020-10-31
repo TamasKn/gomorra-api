@@ -1,11 +1,15 @@
 const express = require('express')
 const router = new express.Router()
 
-const Characters = require('../database/models/character')
+const Deaths = require('../data/deaths')
 
-// All characters
+/**
+ Route: All deaths
+ URI: domain/deaths/
+ **/
 router.get('/', async (req, res) => {
-    const data = await Characters.find()
+
+    const data = Deaths
 
     try {
         res.send({success: true, data: data})
@@ -14,10 +18,10 @@ router.get('/', async (req, res) => {
     }
 })
 
-// Character by name or nickname
-// Character by id
-// Characters by clan
-// Characters by status
-// Characters by season
+// Death by id
+// Death by victim
+// Deaths by perpetrator
+// Deaths by season
+// Deaths by season and episode
 
 module.exports = router

@@ -8,14 +8,10 @@ const cors = require("cors")
 const app = express()
 const PORT = 4000
 
-const characterRoutes = require('./routes/characters')
-const episodeRoutes = require('./routes/episodes')
-const deathRoutes = require('./routes/deaths')
+const characterRoutes = require('./routes/characterRoutes')
+const episodeRoutes = require('./routes/episodeRoutes')
+const deathRoutes = require('./routes/deathRoutes')
 
-const mongoConnect = require('./database/mongo')
-
-// Temporary data injector to DB
-const creator = require('./raw/creator')
 
 /** Middlewares **/
 
@@ -40,7 +36,4 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server is listening at ${PORT}`)
-    mongoConnect()
-
-    // creator()
 })

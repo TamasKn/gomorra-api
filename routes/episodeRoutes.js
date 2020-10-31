@@ -1,11 +1,15 @@
 const express = require('express')
 const router = new express.Router()
 
-const Episodes = require('../database/models/episode')
+const Episodes = require('../data/episodes')
 
-// All episodes
+/**
+ Route: All episodes
+ URI: domain/episodes/
+ **/
 router.get('/', async (req, res) => {
-    const data = await Episodes.find()
+    const data = Episodes
+
     try {
         res.send({success: true, data: data})
     } catch {
