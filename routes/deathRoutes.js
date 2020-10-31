@@ -4,7 +4,7 @@ const router = new express.Router()
 const Deaths = require('../data/deaths')
 
 /**
- Route: All deaths
+ Return: All deaths
  URI: domain/deaths/
  **/
 router.get('/', async (req, res) => {
@@ -18,10 +18,30 @@ router.get('/', async (req, res) => {
     }
 })
 
-// Death by id
-// Death by victim
-// Deaths by perpetrator
-// Deaths by season
-// Deaths by season and episode
+/**
+ Return: Death by id
+ URI: domain/deaths/{id}
+ **/
+
+/**
+ Return: Death by victim
+ URI: domain/deaths/search?victim={string}
+ **/
+
+/**
+ Return: Deaths by perpetrator
+ URI: domain/deaths/search?perpetrator={string}
+ **/
+
+/**
+ Return: Deaths by season
+ URI: domain/deaths/season/{integer}
+ **/
+
+/**
+ Return: Deaths by season and episode
+ URI: domain/deaths/search?season={integer}&episode={integer}
+ **/
+
 
 module.exports = router

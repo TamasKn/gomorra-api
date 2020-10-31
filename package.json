@@ -4,7 +4,6 @@
   "description": "API for italian TV show Gomorra: La Serie",
   "main": "server.js",
   "dependencies": {
-    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "morgan": "^1.10.0"

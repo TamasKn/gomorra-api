@@ -3,7 +3,6 @@ const path = require("path")
 require("dotenv").config({path: path.join(__dirname, '.env')})
 const logger = require("morgan")
 const bodyParser = require("body-parser")
-const cors = require("cors")
 
 const app = express()
 const PORT = 4000
@@ -15,15 +14,13 @@ const deathRoutes = require('./routes/deathRoutes')
 
 /** Middlewares **/
 
-//Cross-Origin Resource Sharing
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
-
 // Logger
 app.use(logger(":date[iso]"))
 app.use(logger("dev"))
 app.use(logger(":user-agent"))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
 
 /** Routes **/
 app.use('/characters', characterRoutes)
