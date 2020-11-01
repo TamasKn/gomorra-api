@@ -21,14 +21,16 @@ router.get('/', async (req, res) => {
  Return: Character by id
  URI: domain/characters/{id}
  **/
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
     const { id } = req.params
-    // return undefined if 'id' passed, works well if hardcoded variable passed
-    const data = Characters.find((el) => el.id === id)
+    const data = await Characters.find((el) => el.id === parseInt(id))
 
     try {
-
-        res.send({success: true, data: data})
+        if(data){
+            res.send({success: true, data: data})
+        } else {
+            res.status(401).send({success: false, message: 'No entry with this ID'})
+        }
 
     } catch {
         res.status(500).send({success: false, message: 'Server error'})
