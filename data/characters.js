@@ -1569,4 +1569,10 @@ const characters = [
 
 ]
 
+const baseURI = 'http://localhost:4000'
+
+for(let i of characters) {
+    i.picture = `${baseURI}/${i.id}.JPG`
+}
+
 module.exports = characters
