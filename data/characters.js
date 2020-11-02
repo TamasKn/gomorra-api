@@ -1569,10 +1569,11 @@ const characters = [
 
 ]
 
-const baseURI = 'http://localhost:4000'
+const localURI = 'http://localhost:4000'
+const deployURI = 'https://gomorra-api.herokuapp.com'
 
 for(let i of characters) {
-    i.picture = `${baseURI}/${i.id}.JPG`
+    i.picture = `${deployURI}/${i.id}.JPG`
 }
 
 module.exports = characters
