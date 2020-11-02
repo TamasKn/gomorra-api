@@ -92,6 +92,23 @@ router.get('/clan/:clan', async (req, res) => {
  Return: Characters by status
  URI: domain/characters/{deceased || alive}
  **/
+router.get('/status/:status', async (req, res) => {
+    const { status } = req.params
+    const query = Helper.Sanitize(status)
+
+    try{
+        const data = await Characters.filter( el => Helper.Sanitize(el.status) === query)
+
+        if(data.length !== 0){
+            SendData(res, data)
+        } else {
+            BadRequest(res)
+        }
+
+    } catch {
+        ServerError(res)
+    }
+})
 
 /**
  Return: Characters by season
