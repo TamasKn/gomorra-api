@@ -1,5 +1,7 @@
 const express = require('express')
 const router = new express.Router({ mergeParams: true })
+const { SendData, BadRequest, ServerError} = require('../utils/responses')
+const { Helper } = require('../utils/helper')
 
 const Characters = require('../data/characters')
 
@@ -8,12 +10,12 @@ const Characters = require('../data/characters')
  URI: domain/characters/
  **/
 router.get('/', async (req, res) => {
-    const data = Characters
 
     try {
-        res.send({success: true, data: data})
+        const data = Characters
+        SendData(res, data)
     } catch {
-        res.status(500).send({success: false, message: 'Server error'})
+        ServerError()
     }
 })
 
@@ -21,26 +23,47 @@ router.get('/', async (req, res) => {
  Return: Character by id
  URI: domain/characters/{id}
  **/
-router.get('/:id', async (req, res) => {
+router.get('/id/:id', async (req, res) => {
     const { id } = req.params
-    const data = await Characters.find((el) => el.id === parseInt(id))
 
     try {
+        const data = await Characters.find((el) => el.id === parseInt(id))
         if(data){
-            res.send({success: true, data: data})
+            SendData(res, data)
         } else {
-            res.status(401).send({success: false, message: 'No entry with this ID'})
+            BadRequest(res)
         }
-
     } catch {
-        res.status(500).send({success: false, message: 'Server error'})
+        ServerError(res)
     }
 })
 
 /**
  Return: Character by name or nickname
- URI: domain/characters/{name}
+ URI: domain/characters/{name/nickname}
  **/
+router.get('/name/:name', async (req, res) => {
+    const { name } = req.params
+    const query = Helper.Sanitize(name)
+
+    try{
+        const data = await Characters.filter( el => {
+            if(Helper.Sanitize(el.name).includes(query) || Helper.Sanitize(el.nickname).includes(query)
+            ) {
+                return el
+            }
+        })
+
+        if(data.length !== 0){
+            SendData(res, data)
+        } else {
+            BadRequest(res)
+        }
+
+    } catch {
+        ServerError(res)
+    }
+})
 
 /**
  Return: Characters by clan
