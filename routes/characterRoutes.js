@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 
 /**
  Return: Character by id
- URI: domain/characters/{id}
+ URI: domain/characters/is/{id}
  **/
 router.get('/id/:id', async (req, res) => {
     const { id } = req.params
@@ -40,7 +40,7 @@ router.get('/id/:id', async (req, res) => {
 
 /**
  Return: Character by name or nickname
- URI: domain/characters/{name/nickname}
+ URI: domain/characters/name/{name/nickname}
  **/
 router.get('/name/:name', async (req, res) => {
     const { name } = req.params
@@ -90,7 +90,7 @@ router.get('/clan/:clan', async (req, res) => {
 
 /**
  Return: Characters by status
- URI: domain/characters/{deceased || alive}
+ URI: domain/characters/status/{deceased || alive}
  **/
 router.get('/status/:status', async (req, res) => {
     const { status } = req.params
@@ -114,6 +114,22 @@ router.get('/status/:status', async (req, res) => {
  Return: Characters by season
  URI: domain/characters/season/{integer}
  **/
+router.get('/season/:season', async (req, res) => {
+    const { season } = req.params
+    console.log(typeof season)
 
+    try{
+        const data = await Characters.filter( el => el.seasons.includes(parseFloat(season)))
+
+        if(data.length !== 0){
+            SendData(res, data)
+        } else {
+            BadRequest(res)
+        }
+
+    } catch {
+        ServerError(res)
+    }
+})
 
 module.exports = router
