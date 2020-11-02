@@ -18,9 +18,11 @@ const deathRoutes = require('./routes/deathRoutes')
 app.use(logger(":date[iso]"))
 app.use(logger("dev"))
 app.use(logger(":user-agent"))
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+app.use(express.static(__dirname + '/pictures'));
 
 /** Routes **/
 app.use('/characters', characterRoutes)
