@@ -48,8 +48,9 @@ router.get('/name/:name', async (req, res) => {
 
     try{
         const data = await Characters.filter( el => {
-            if(Helper.Sanitize(el.name).includes(query) || Helper.Sanitize(el.nickname).includes(query)
-            ) {
+            if(Helper.Sanitize(el.name).includes(query) ||
+                Helper.Sanitize(el.nickname).includes(query)) {
+
                 return el
             }
         })
@@ -67,8 +68,25 @@ router.get('/name/:name', async (req, res) => {
 
 /**
  Return: Characters by clan
- URI: domain/characters/{clan}
+ URI: domain/characters/clan/{clan}
  **/
+router.get('/clan/:clan', async (req, res) => {
+    const { clan } = req.params
+    const query = Helper.Sanitize(clan)
+
+    try{
+        const data = await Characters.filter( el => Helper.Sanitize(el.clan).includes(query))
+
+        if(data.length !== 0){
+            SendData(res, data)
+        } else {
+            BadRequest(res)
+        }
+
+    } catch {
+        ServerError(res)
+    }
+})
 
 /**
  Return: Characters by status
