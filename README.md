@@ -12,8 +12,6 @@ Based on the Italian TV-show Gomorra: La serie and the spin-off film L'immortale
 
 ### Characters
 
-Attributes
-
 | Attribute | Type | Description |
 |---|---|---|
 | id | integer | Unique ID for each character |
@@ -243,6 +241,6 @@ Feel free to make Pull Request if you like to add or correct content.
 Images of characters belong to HBO. Names, logos, titles, events etc. regarding to the show are properties of
 Fandango, Cattleya and BETA. The series distributed by SKY Vision.
 
-The software is under BSD licence which means you can use or modify the source code
+The software is under BSD license which means you can use or modify the source code
 as long as you include the BSD copyright notice.
  
