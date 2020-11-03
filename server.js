@@ -29,8 +29,10 @@ app.enable('trust proxy')
 
 // Request limiter
 const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 500
+    windowMs: 24 * 60 * 60 * 1000, // 24 hrs
+    max: 3000,
+    message: 'API is limited to 3000 requests per day. You can try again after 24 hours.',
+    headers: true,
 });
 
 app.use(limiter);
