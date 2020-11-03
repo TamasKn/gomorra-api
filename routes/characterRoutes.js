@@ -1,5 +1,5 @@
 const express = require('express')
-const router = new express.Router({ mergeParams: true })
+const router = new express.Router()
 const { SendData, BadRequest, ServerError} = require('../utils/responses')
 const { Helper } = require('../utils/helper')
 
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
         const data = Characters
         SendData(res, data)
     } catch {
-        ServerError()
+        ServerError(res)
     }
 })
 
