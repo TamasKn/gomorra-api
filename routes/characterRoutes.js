@@ -116,7 +116,6 @@ router.get('/status/:status', async (req, res) => {
  **/
 router.get('/season/:season', async (req, res) => {
     const { season } = req.params
-    console.log(typeof season)
 
     try{
         const data = await Characters.filter( el => el.seasons.includes(parseFloat(season)))
@@ -131,5 +130,29 @@ router.get('/season/:season', async (req, res) => {
         ServerError(res)
     }
 })
+
+/**
+ Return: 10 random characters as a placeholder
+ URI: domain/characters/placeholder
+ **/
+router.get('/placeholder', async (req, res) => {
+
+    try{
+        const data = []
+        // 3 from the first 10 ID
+        // 7 from the >10 ID
+
+        if(data.length !== 0){
+            SendData(res, data)
+        } else {
+            BadRequest(res)
+        }
+
+    } catch {
+        ServerError(res)
+    }
+})
+
+
 
 module.exports = router
