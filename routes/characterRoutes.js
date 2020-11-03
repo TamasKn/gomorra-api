@@ -138,9 +138,7 @@ router.get('/season/:season', async (req, res) => {
 router.get('/placeholder', async (req, res) => {
 
     try{
-        const data = []
-        // 3 from the first 10 ID
-        // 7 from the >10 ID
+        const data = await Helper.GenerateRandomIDs(Characters).map(idx => Characters[idx])
 
         if(data.length !== 0){
             SendData(res, data)
