@@ -5,7 +5,7 @@ Based on the Italian TV-show Gomorra: La serie and the spin-off film L'immortale
 
 ### Base URI
 
-`https://gomorra-api.herokuapp.com/`
+`https://gomorra-api.onrender.com/`
 
 ### Endpoints
 `Characters` `Deaths` `Episodes`
@@ -45,7 +45,7 @@ Get single character by ID
          "nickname": "Immortale",
          "occupation": "Enforcer, Boss",
          "clan": "Savastano, Di Marzio",
-         "picture": "https://gomorra-api.herokuapp.com/1.JPG",
+         "picture": "https://gomorra-api.onrender.com/1.JPG",
          "status": "Alive",
          "seasons": [
              1,
@@ -73,7 +73,7 @@ It will search in both name and nickname.
             "nickname": "'O Track",
             "occupation": "Dealer, Boss",
             "clan": "Savastano, Ragazzi del Vicolo",
-            "picture": "https://gomorra-api.herokuapp.com/12.JPG",
+            "picture": "https://gomorra-api.onrender.com/12.JPG",
             "status": "Deceased",
             "seasons": [
                 1,

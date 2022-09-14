@@ -1570,7 +1570,7 @@ const characters = [
 ]
 
 const localURI = 'http://localhost:4000'
-const deployURI = 'https://gomorra-api.herokuapp.com'
+const deployURI = 'https://gomorra-api.onrender.com'
 
 for(let i of characters) {
     i.picture = `${deployURI}/${i.id}.JPG`
